@@ -1,4 +1,4 @@
-import { DriftQL } from './lib';
+import { DriftQL } from '@tonka/driftql-react/types';
 
 const headers = new Headers();
 headers.append('Content-Type', 'application/json');

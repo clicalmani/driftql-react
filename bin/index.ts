@@ -1,4 +1,4 @@
-import { DriftQL } from '../lib';
+import { DriftQL } from '@tonka/driftql-react/types';
 import { request } from '../xhr';
 
 let appConfig: DriftQL.Config = {
