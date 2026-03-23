@@ -62,10 +62,10 @@ export default {
 Then, initialize the package in your entry file (e.g., `main.tsx` or `App.js`):
 
 ```javascript
-import { DriftQL } from 'driftql-react';
+import { Client } from 'driftql-react';
 import config from './drift.config';
 
-DriftQL.init(config);
+Client.init(config);
 ```
 
 ### 2. Backend Configuration (Tonka / PHP)
