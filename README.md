@@ -18,6 +18,12 @@ npm install driftql-react
 yarn add driftql-react
 ```
 
+Backend installation: 
+
+```bash
+composer require tonka/driftql
+```
+
 ## ⚙️ Configuration
 
 ### Auto-Configuration (Recommended)
@@ -144,7 +150,7 @@ return [
         ],
         
         // Example using a Policy Class
-        \App\Models\Post::class => \App\Policies\Drift\PostPolicy::class,
+        \App\Models\Post::class => \App\Contracts\PostContract::class,
     ],
 
     /*
