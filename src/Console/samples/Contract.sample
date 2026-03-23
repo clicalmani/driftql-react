@@ -1,0 +1,10 @@
+<?php
+namespace App\Contracts;
+
+class $class extends \Tonka\DriftQL\Security\Contract
+{
+    public function authorize(): bool
+    {
+        throw new \Exception('Not implemented');
+    }
+}
