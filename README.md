@@ -24,7 +24,7 @@ npm install driftql-react
 yarn add driftql-react
 ```
 
-## 🚀 Démarrage Rapide
+## 🚀 Quick Start
 
 ### 1. "Automatic Injection" mode (The simplest)
 Perfect for loading images or metadata without writing display logic. The component automatically updates the `src` attribute when the data arrives.
@@ -51,8 +51,6 @@ import { Elegant } from 'driftql-react';
 <Elegant 
   resource="Employee" 
   id="2"
-  preloader={<Spinner />}
-  fallback={<ErrorMessage />}
 >
   {(loading, error, data) => (
     <div className="card">
