@@ -1,0 +1,28 @@
+{
+  "name": "@tonka/driftql",
+  "version": "1.0.0",
+  "description": "DriftQL is a powerful Elegant ORM client designed to simplify data fetching and state management. It provides an intuitive API for making queries and mutations, while also offering features like caching, error handling, and real-time updates. With DriftQL, developers can easily integrate Elegant ORM like into their projects and build efficient, scalable applications.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clicalmani/driftql-vue3.git"
+  },
+  "keywords": [
+    "Tonka",
+    "InertiaJs",
+    "Vue3",
+    "GraphQL"
+  ],
+  "dependencies": {
+    "axios": "1.13.6"
+  },
+  "author": "clicalmani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/clicalmani/driftql-vue3/issues"
+  },
+  "homepage": "https://github.com/clicalmani/driftql-vue3#readme"
+}
