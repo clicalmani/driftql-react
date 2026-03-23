@@ -1,5 +1,5 @@
 {
-  "name": "@tonka/driftql-react",
+  "name": "driftql-react",
   "version": "1.0.0",
   "description": "DriftQL is a powerful Elegant ORM client designed to simplify data fetching and state management. It provides an intuitive API for making queries and mutations, while also offering features like caching, error handling, and real-time updates. With DriftQL, developers can easily integrate Elegant ORM like into their projects and build efficient, scalable applications.",
   "main": "index.js",
