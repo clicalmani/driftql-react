@@ -1,6 +1,6 @@
 # DriftQL React 🚀
 
-The bridge between your **Tonka Framework** application and React. Seamlessly expose your **Elegant ORM** models to the frontend with a powerful, secure, and declarative API.
+The bridge between your [**Tonka Framework**](https://clicalmani.github.io/tonka) application and React. Seamlessly expose your [**Elegant ORM**](https://clicalmani.github.io/tonka/#/orm) models to the frontend with a powerful, secure, and declarative API.
 
 ## 🌟 Features
 
@@ -20,9 +20,27 @@ yarn add driftql-react
 
 ## ⚙️ Configuration
 
+### Auto-Configuration (Recommended)
+
+The [Tonka Framework](https://clicalmani.github.io/tonka) provides a command to generate both the frontend and backend configuration files automatically for you.
+
+Run the following command in your terminal:
+
+```bash
+php tonka driftql:config
+```
+
+This command will create/overwrite:
+1.  **`drift.config.js`** (Frontend configuration)
+2.  **`config/driftql.php`** (Backend configuration)
+
+Once generated, you can review and customize the files below.
+
+---
+
 ### 1. Frontend Configuration
 
-Create a configuration file (e.g., `drift.config.js`) at the root of your project.
+The generated `drift.config.js` file will look like this:
 
 ```javascript
 // drift.config.js
@@ -50,9 +68,9 @@ import config from './drift.config';
 DriftQL.init(config);
 ```
 
-### 2. Backend Configuration (Laravel / PHP)
+### 2. Backend Configuration (Tonka / PHP)
 
-Configure your DriftQL bridge to secure and control data access.
+The generated `config/driftql.php` file manages security, whitelisting, and data access policies.
 
 ```php
 // config/driftql.php
@@ -101,6 +119,9 @@ return [
     | 'ModelName' => [
     |      'RoleName' => [ Filtering rule ]
     | ]
+    |
+    | Note: You can specify a class implementing \Tonka\DriftQL\Security\Contract
+    | instead of an array. This class exposes the authorize() method.
     */
     'policies' => [
         \App\Models\User::class => [
@@ -122,8 +143,7 @@ return [
             ],
         ],
         
-        // You can also specify a custom Policy class instead of an array.
-        // The class must implement \Tonka\DriftQL\Security\Contract.
+        // Example using a Policy Class
         \App\Models\Post::class => \App\Policies\Drift\PostPolicy::class,
     ],
 
