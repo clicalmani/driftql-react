@@ -1,7 +1,3 @@
-Here is the updated and polished **README.md** in English, incorporating all your specific requirements regarding the configuration files, usage examples, and the Tonka Framework context.
-
-***
-
 # DriftQL React 🚀
 
 The bridge between your **Tonka Framework** application and React. Seamlessly expose your **Elegant ORM** models to the frontend with a powerful, secure, and declarative API.
