@@ -1,4 +1,4 @@
-import { DriftQL } from '@tonka/driftql-react/types';
+import { DriftQL } from '@tonka/driftql-react';
 import { request } from '../xhr';
 
 let appConfig: DriftQL.Config = {
@@ -137,7 +137,7 @@ export abstract class Elegant {
 }
 
 export const Client = {
-  init: (config: DriftQL.Config) => {
+  init: (config: Partial<DriftQL.Config>) => {
     appConfig = { ...appConfig, ...config };
   }
 };
