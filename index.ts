@@ -1,4 +1,4 @@
 export {
     Elegant,
     Client
-} from "@tonka/driftql-react/bin"
+} from "driftql-react/bin";

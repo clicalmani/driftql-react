@@ -1,5 +1,5 @@
 import React, { ComponentPropsWithRef, ElementType, forwardRef, useEffect, useRef, useState } from "react";
-import { DriftQL } from "../lib";
+import { DriftQL } from "driftql-react";
 import { QueryBuilder } from "../bin";
 
 const DEFAULT_WHERES: any[] = [];

@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, ElementType } from "react";
-import { Elegant } from "@tonka/driftql-react/bin";
+import { Elegant } from "driftql-react/bin";
 
-declare module '@tonka/driftql-react' {
+declare module 'driftql-react/types' {
   namespace DriftQL {
     type CustomElementType<E extends ElementType, T = any> = {
       as?: E;
