@@ -1,9 +1,9 @@
 {
   "name": "driftql-react",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "DriftQL is a powerful Elegant ORM client designed to simplify data fetching and state management. It provides an intuitive API for making queries and mutations, while also offering features like caching, error handling, and real-time updates. With DriftQL, developers can easily integrate Elegant ORM like into their projects and build efficient, scalable applications.",
-  "main": "./dist/index.js",       
-  "types": "./dist/index.d.ts",     
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js"
   },
@@ -13,7 +13,7 @@
     "test"
   ],
   "scripts": {
-    "build": "tsc" 
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -25,12 +25,9 @@
     "ReactJs",
     "GraphQL"
   ],
-  "dependencies": {
-    "axios": "1.13.6"
-  },
   "devDependencies": {
     "typescript": "^5.0.0",
-    "vite": "^5.0.0" 
+    "vite": "^5.0.0"
   },
   "author": "clicalmani",
   "license": "MIT",
