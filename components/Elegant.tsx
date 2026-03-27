@@ -1,12 +1,12 @@
 import React, { ComponentPropsWithRef, ElementType, forwardRef, useEffect, useRef, useState } from "react";
-import { DriftQL } from "driftql-react";
-import { QueryBuilder } from "../bin";
+import { QueryBuilder } from "../index";
+import { CustomElementType, ElegantComponentProps } from "../types";
 
 const DEFAULT_WHERES: any[] = [];
 const DEFAULT_ORDERS: any[] = [];
 
 const Elegant = forwardRef((
-  { as: Component = 'div' as const, className, children, wheres, orders, limit, offset = 0, resource, id, delay = 0, onLoadStart, onComplete, onError, ...rest }: DriftQL.CustomElementType<'div'> & DriftQL.ElegantComponentProps,
+  { as: Component = 'div' as const, className, children, wheres, orders, limit, offset = 0, resource, id, delay = 0, onLoadStart, onComplete, onError, ...rest }: CustomElementType<'div'> & ElegantComponentProps,
   ref: React.Ref<any>
 ) => {
   const internalRef = useRef<HTMLElement>(null);
@@ -98,7 +98,7 @@ const Elegant = forwardRef((
     </Component>
   );
 }) as <E extends ElementType = 'div'>(
-  props: DriftQL.CustomElementType<E> & { ref?: ComponentPropsWithRef<E>['ref'] } & DriftQL.ElegantComponentProps
+  props: CustomElementType<E> & { ref?: ComponentPropsWithRef<E>['ref'] } & ElegantComponentProps
 ) => React.ReactElement | null;
 
 export default Elegant;

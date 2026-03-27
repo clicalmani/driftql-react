@@ -1,4 +1,4 @@
-import { DriftQL } from 'driftql-react/types';
+import { RequestData } from "./types";
 
 const headers = new Headers();
 headers.append('Content-Type', 'application/json');
@@ -13,7 +13,7 @@ const patch = (url: string, body?: any) => {
     headers.delete('Content-Type')
     return fetch(url, { method: 'PATCH', headers, body })
 }
-const request = (url: string, init?: (() => RequestInit) | DriftQL.RequestData, throwable?: boolean) : Promise<any> => {
+const request = (url: string, init?: (() => RequestInit) | RequestData, throwable?: boolean) : Promise<any> => {
 
     throwable = throwable ?? true;
     let reqInit: any = init ?? {};
