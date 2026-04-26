@@ -13,6 +13,6 @@
     "removeComments": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["index.ts"],
+  "include": ["index.ts", "./components"],
   "exclude": ["node_modules", "dist"]
 }
