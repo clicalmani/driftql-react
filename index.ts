@@ -1,5 +1,5 @@
 import { Config, JoinClause, OrderClause, WhereClause } from './types';
-import { request } from './xhr';
+import { headers, request } from './xhr';
 
 let appConfig: Config = {
   baseURL: '/api/bridge',
@@ -99,8 +99,12 @@ export class QueryBuilder<T> {
     return this.execute();
   }
 
-  async store(data: FormData): Promise<T> {
+  async store(data: FormData | Record<string, any>): Promise<T> {
     const hash = await this.hashString('store');
+
+    if (!(data instanceof FormData)) {
+      data = this.objectToFormData(data);
+    }
 
     data.append('__dq_model', this.modelName);
 
@@ -120,7 +124,7 @@ export class QueryBuilder<T> {
     }
   }
 
-  async update(id: any, data: FormData): Promise<T> {
+  async update(id: any, data: FormData | Record<string, any>): Promise<T> {
     const hash = await this.hashString('update');
     data.append('__dq_id', id);
     return await this.store(data);
@@ -215,6 +219,50 @@ export class QueryBuilder<T> {
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     return hashHex;
   }
+  
+  private objectToFormData<T extends Record<string, any>>(
+      obj: T,
+      formData?: FormData,
+      parentKey?: string
+  ): FormData {
+    const fd = formData || new FormData();
+
+    Object.keys(obj).forEach((key) => {
+      const value = obj[key];
+      
+      // Si la valeur est null ou undefined, on peut décider de l'ignorer ou d'envoyer une chaîne vide
+      if (value === null || value === undefined) {
+        // Optionnel : fd.append(...) si vous voulez envoyer une chaîne vide
+        return; 
+      }
+
+      // Construction de la clé (ex: user[name])
+      const formKey = parentKey ? `${parentKey}[${key}]` : key;
+
+      if (value instanceof Date) {
+        // Cas Date -> ISO String
+        fd.append(formKey, value.toISOString());
+      } else if (value instanceof File || value instanceof Blob) {
+        // Cas File/Blob -> Fichier brut
+        fd.append(formKey, value);
+      } else if (Array.isArray(value)) {
+        // Cas Tableau -> On itère pour créer formKey[0], formKey[1], etc.
+        value.forEach((item, index) => {
+          // On rappelle la fonction pour chaque élément du tableau
+          // Note: on crée un objet temporaire pour réutiliser la logique de clé
+          objectToFormData({ [index]: item } as any, fd, formKey);
+        });
+      } else if (typeof value === 'object') {
+        // Cas Objet imbriqué -> Récursivité
+        objectToFormData(value, fd, formKey);
+      } else {
+        // Cas Primitif (string, number, boolean)
+        fd.append(formKey, value);
+      }
+    });
+
+    return fd;
+  }
 }
 
 export abstract class Elegant {
@@ -232,7 +280,7 @@ export abstract class Elegant {
     return builder.all();
   }
 
-  static async store<T extends Elegant>(form_data: FormData): Promise<T | null> {
+  static async store<T extends Elegant>(form_data: FormData | Record<string, any>): Promise<T | null> {
     const builder = new QueryBuilder(this.resourceName);
     const response = await builder.store(form_data);
     const { success, data } = response as any;
@@ -243,7 +291,7 @@ export abstract class Elegant {
     return null;
   }
 
-  static async update<T extends Elegant>(id: any, form_data: FormData): Promise<T | null> {
+  static async update<T extends Elegant>(id: any, form_data: FormData | Record<string, any>): Promise<T | null> {
     const builder = new QueryBuilder(this.resourceName);
     const response = await builder.update(id, form_data);
     const { success, data } = response as any;
