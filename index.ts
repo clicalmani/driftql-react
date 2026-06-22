@@ -111,13 +111,13 @@ export class QueryBuilder<T> {
     try {
       const controller = new AbortController;
       const timer = setTimeout(() => controller.abort(), appConfig.timeout)
-      const response = await request(appConfig.baseURL + '/' + appConfig.bridge_public_key + '/' + hash, () => ({
+      const { data } = await request(appConfig.baseURL + '/' + appConfig.bridge_public_key + '/' + hash, () => ({
         method: data.get('__dq_id') ? 'PATCH' : 'POST',
         body: data,
         signal: controller.signal
       }));
       clearTimeout(timer);
-      return response;
+      return data;
     } catch (error) {
       console.error(`Error on ${this.modelName}:`, error);
       throw error;
@@ -126,6 +126,11 @@ export class QueryBuilder<T> {
 
   async update(id: any, data: FormData | Record<string, any>): Promise<T> {
     const hash = await this.hashString('update');
+
+    if (!(data instanceof FormData)) {
+      data = this.objectToFormData(data);
+    }
+
     data.append('__dq_id', id);
     return await this.store(data);
   }
